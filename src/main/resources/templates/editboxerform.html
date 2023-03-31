@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxer edit</title>
+</head>
+<body>
+  	<h1>Muokkaa valittua nyrkkeilijää:</h1>
+    <form method="post" action="#" th:action="@{/saveboxer}" th:object = ${boxer} >
+    
+    		<input type="hidden" th:field="*{boxer_Id}" class = "form-control"/>
+    
+    		<label for="firstName">Etunimi</label>
+			<input type="text" id="firstName" th:field="*{firstName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="lastName">Sukunimi</label>
+			<input type="text" id="lastName" th:field="*{lastName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="birthYear">Syntymävuosi</label>
+			<input type="text" th:field="*{birthYear}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="weight">Paino</label>
+			<input type="text" th:field="*{weight}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="stance">Kätisyys</label>
+			<input type="text" th:field="*{stance}" />
+    		<div style="clear: both; display: block; height: 10px;"></div>
+    		
+    		<label for="bouts">Ottelut</label>
+			<input type="text" th:field="*{bouts}" />
+    		<div style="clear: both; display: block; height: 10px;"></div>
+    		
+    <input type="submit" value="Submit"/> <input type="reset" value="Reset">
+    </form>
+    
+    
+</body>
+</html>

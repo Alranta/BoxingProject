@@ -7,7 +7,24 @@
     <title>Boxer list</title>
 </head>
 <body>
-	<h1>Boxer list coming!</h1>  
-    
+	<h1>Boxer list</h1>  
+    <table>
+    	<tr>
+    		<th>Etunimi</th>
+    		<th>Sukunimi</th>
+    		<th>Syntymävuosi</th>
+    		<th>Paino</th>
+    		<th>Kätisyys</th>
+    		<th>Ottelut</th>
+    	</tr>
+    	<tr th:each="boxer :${boxerlist}">
+    		<td th:text="${boxer.firstName}">Etunimi</td>
+    		<td th:text="${boxer.lastName}">Etunimi</td>
+    		<td th:text="${boxer.birthYear}">Syntymävuosi</td>
+    		<td th:text="${boxer.weight}">Paino</td>
+    		<td th:text="${boxer.stance}">Kätisyys</td>
+    		<td th:text="${boxer.bouts}">Ottelut</td>
+    	</tr>
+    </table>
 </body>
 </html>
