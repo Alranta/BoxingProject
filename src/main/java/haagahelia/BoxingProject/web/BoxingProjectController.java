@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import haagahelia.BoxingProject.domain.Boxer;
 import haagahelia.BoxingProject.domain.BoxerRepository;
+import haagahelia.BoxingProject.domain.StanceRepository;
 
 @Controller
 public class BoxingProjectController {
 
 @Autowired
 private BoxerRepository boxerrepository;
+@Autowired
+private StanceRepository stancerepository;
 	// INDEX HOMEPAGE WHERE THERE IS A LIST OF ALL BOXERS
 	@GetMapping("/index")
 	public String helloWorld(Model model) {
@@ -47,6 +50,8 @@ private BoxerRepository boxerrepository;
 	@GetMapping("/newboxer")
 	public String addNewBoxer(Model model) {
 		model.addAttribute("boxer", new Boxer());
+		// ADDED STANCE TO NEW BOXER
+		model.addAttribute("stances", stancerepository.findAll());
 		return "boxerform";
 	}
 	// POST FOR SAVE NEW BOXER
@@ -65,6 +70,8 @@ private BoxerRepository boxerrepository;
 	@GetMapping("/editboxer/{id}")
 	public String editBoxer(@PathVariable("id") Long boxer_id, Model model) {
 		model.addAttribute("boxer", boxerrepository.findById(boxer_id));
+		// ADDED STANCE TO EDIT BOXER
+		model.addAttribute("stances", stancerepository.findAll());
 		return "editboxerform";
 	}
 }
