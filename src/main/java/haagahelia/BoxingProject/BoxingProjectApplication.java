@@ -9,6 +9,8 @@ import haagahelia.BoxingProject.domain.Boxer;
 import haagahelia.BoxingProject.domain.BoxerRepository;
 import haagahelia.BoxingProject.domain.Stance;
 import haagahelia.BoxingProject.domain.StanceRepository;
+import haagahelia.BoxingProject.domain.User;
+import haagahelia.BoxingProject.domain.UserRepository;
 
 @SpringBootApplication
 public class BoxingProjectApplication {
@@ -19,8 +21,15 @@ public class BoxingProjectApplication {
 
 	// COMMANDLINE RUNNER FOR TEST DB
 	@Bean
-	public CommandLineRunner testdataToDatabase(BoxerRepository boxerreposity, StanceRepository stancerepository) {
+	public CommandLineRunner testdataToDatabase(BoxerRepository boxerreposity, StanceRepository stancerepository, UserRepository userrepository) {
 		return (arg) -> {
+			//User user = new User("user", "$2a$10$CHvqG2LHPUd9cvqpvNJj2.h/CTjfDVe.I2t.JijYmZSv.YN0TlHcu", "USER");
+			User user1 = new User("user", "$2a$10$QloyikO59jTgqye/N0y1SueadKPrsGYi7yzgLPO2l02YTwGjaHF56", "USER");
+			User admin = new User("admin", "$2a$10$khB7zimb0wKWIaPscobtLuJzTvkA4hbs9.0JNIZg9VnsFDhIHh70a", "ADMIN");
+			userrepository.save(user1);
+			userrepository.save(admin);
+
+			
 			Stance stanceOrthodox = new Stance("Orthodox");
 			Stance stanceSouthpaw = new Stance("Southpaw");
 			stancerepository.save(stanceOrthodox);
