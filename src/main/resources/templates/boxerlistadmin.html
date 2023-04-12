@@ -11,7 +11,12 @@
 <body>
 	<h1>Boxer list</h1>
 	
-	<p><a class ="btn btn-success" href =/login>Kirjaudu sisään</a>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+	
 	<table>
 		<tr>
 			<th>Nimi</th>
@@ -26,7 +31,10 @@
 			<td th:text="${boxer.weight}">Paino</td>
 			<td th:text="${boxer.stance.stance}">Kätisyys</td>
 			<td th:text="${boxer.bouts}">Ottelut</td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a class ="btn btn-success" th:href="@{/editboxer/{id}(id=${boxer.boxer_Id})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a class ="btn btn-danger" th:href="@{/deleteboxer/{id}(id=${boxer.boxer_Id})}">Delete</a></td>
 		</tr>
 	</table>
+	<p sec:authorize="hasAuthority('ADMIN')"><a class ="btn btn-success" href =/newboxer>Lisää uusi nyrkkeilijä</a>
 </body>
 </html>

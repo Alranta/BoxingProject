@@ -25,6 +25,7 @@ public class WebSecurityConfig {
 		
 		.authorizeHttpRequests()
 			.requestMatchers("/css/**").permitAll()
+			.requestMatchers("/", "/index").permitAll()
 			.requestMatchers(toH2Console()).permitAll()
 			.anyRequest().authenticated()
 			.and()
@@ -33,7 +34,8 @@ public class WebSecurityConfig {
 			  .headers().frameOptions().disable()
 			  .and()
 		.formLogin()
-			.defaultSuccessUrl("/index", true)
+			.loginPage("/login")
+			.defaultSuccessUrl("/indexadmin", true)
 			.permitAll()
 			.and()
 		.logout()
