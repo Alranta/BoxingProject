@@ -17,13 +17,15 @@
 		</form>
 	</div>
 	
-	<table>
+	<table class="table table-striped">
 		<tr>
 			<th>Nimi</th>
 			<th>Syntymävuosi</th>
 			<th>Paino</th>
 			<th>Kätisyys</th>
 			<th>Ottelut</th>
+			<th>Muokkaa</th>
+			<th>Poista</th>
 		</tr>
 		<tr th:each="boxer :${boxerlist}">
 			<td th:text="${boxer.firstName} + ' ' + ${boxer.lastName}">Nimi</td>
