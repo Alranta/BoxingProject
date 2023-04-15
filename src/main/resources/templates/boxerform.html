@@ -29,7 +29,7 @@
 			
 			<label for="stancelist">Kätisyys</label>
     		<select id="stancelist" th:field="*{stance}" class = "form-control">
-    		<option th:each="stance: ${stances}" th:value="${stance.stanceId}" th:text = "${stance.stance}"></option>
+    		<option th:each="stance: ${stances}" th:value="${stance.id}" th:text = "${stance.stance}"></option>
     		</select>
     		<div style="clear: both; display: block; height: 10px;"></div>
     		

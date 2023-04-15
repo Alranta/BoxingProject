@@ -1,5 +1,8 @@
 package haagahelia.BoxingProject.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -7,26 +10,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 //CREATE BOXER CLASS
 @Entity // THIS CREATES A DATABASE TABLE
+@Table(name="Boxer")
 public class Boxer {
 	// GIVE PARAMETERS FOR A BOXER
 	@Id // THIS CREATES A PRIMARYKEY FOR THE DATABASE TABLE
 	@GeneratedValue(strategy = GenerationType.AUTO) // THIS AUTOGENERATES ID
 
-	private Long boxer_Id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private int birthYear;
 	private Double weight;
-
 	private int bouts;
-	
-	@ManyToOne //MANY BOXERS TO ONE 
-	@JsonIgnore //JSONIGNORE STOPS LOOP!
-	@JoinColumn(name = "stanceid") // JOINS TABLES TOGETHER!
+
+	@ManyToOne // MANY BOXERS TO ONE
+	@JsonIgnore // JSONIGNORE STOPS LOOP!
+	@JoinColumn(name = "stance_id") // JOINS TABLES TOGETHER!
 	private Stance stance;
 
 	// GENERATE CONSTRUCTORS
@@ -34,6 +40,7 @@ public class Boxer {
 	public Boxer() {
 		super();
 	}
+
 	// WITH PARAMETERS
 	public Boxer(String firstName, String lastName, int birthYear, Double weight, int bouts, Stance stance) {
 		super();
@@ -46,11 +53,11 @@ public class Boxer {
 	}
 
 	// SETTERS
+	
 
-	public void setBoxer_Id(Long boxer_Id) {
-		this.boxer_Id = boxer_Id;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -77,8 +84,8 @@ public class Boxer {
 	}
 	// GETTERS
 
-	public Long getBoxer_Id() {
-		return boxer_Id;
+	public Long getId() {
+		return id;
 	}
 
 	public String getFirstName() {
@@ -108,8 +115,8 @@ public class Boxer {
 	// TOSTRING
 	@Override
 	public String toString() {
-		return "Boxer [boxer_Id=" + boxer_Id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthYear="
-				+ birthYear + ", weight=" + weight + ", bouts=" + bouts ;
+		return "Boxer [boxer_Id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthYear="
+				+ birthYear + ", weight=" + weight + ", bouts=" + bouts;
 	}
 
 }

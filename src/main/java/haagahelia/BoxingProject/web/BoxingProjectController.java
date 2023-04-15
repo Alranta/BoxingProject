@@ -46,8 +46,8 @@ private StanceRepository stancerepository;
 	// MAPPING FOR A SINGLE BOXER USING A ID PATH FOR REST
 	// ALSO REMEMBER API/BOXERS FOR REST API!
 	@GetMapping("/boxers/{id}")
-	public @ResponseBody Optional<Boxer> getOneBoxer(@PathVariable("id") Long boxer_Id) {
-		return boxerrepository.findById(boxer_Id);
+	public @ResponseBody Optional<Boxer> getOneBoxer(@PathVariable("id") Long id) {
+		return boxerrepository.findById(id);
 	}
 	// POST METHOD FOR POSTING BOXERS
 	@PostMapping("/boxers")
@@ -72,15 +72,15 @@ private StanceRepository stancerepository;
 	// GET FOR DELETE BOXER
 	@GetMapping("/deleteboxer/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")// METHOD SECURITY, ONLY ADMIN CAN DELETE BOXER
-	public String deleteBoxer(@PathVariable("id") Long boxer_id) {
-		boxerrepository.deleteById(boxer_id);
+	public String deleteBoxer(@PathVariable("id") Long id) {
+		boxerrepository.deleteById(id);
 		return "redirect:/indexadmin";
 	}
 	// GET FOR EDIT BOXER
 	@GetMapping("/editboxer/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public String editBoxer(@PathVariable("id") Long boxer_id, Model model) {
-		model.addAttribute("boxer", boxerrepository.findById(boxer_id));
+	public String editBoxer(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("boxer", boxerrepository.findById(id));
 		// ADDED STANCE TO EDIT BOXER
 		model.addAttribute("stances", stancerepository.findAll());
 		return "editboxerform";

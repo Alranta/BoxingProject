@@ -10,7 +10,7 @@
   	<h1>Muokkaa valittua nyrkkeilijää:</h1>
     <form method="post" action="#" th:action="@{/saveboxer}" th:object = ${boxer} >
     
-    		<input type="hidden" th:field="*{boxer_Id}" class = "form-control"/>
+    		<input type="hidden" th:field="*{id}" class = "form-control"/>
     
     		<label for="firstName">Etunimi</label>
 			<input type="text" id="firstName" th:field="*{firstName}" />
@@ -34,7 +34,7 @@
     		
     		<label for="stancelist">Kätisyys</label>
     		<select id="stancelist" th:field="*{stance}" class = "form-control">
-    		<option th:each="stance: ${stances}" th:value="${stance.stanceId}" th:text = "${stance.stance}"></option>
+    		<option th:each="stance: ${stances}" th:value="${stance.id}" th:text = "${stance.stance}"></option>
     		</select>
     		<div style="clear: both; display: block; height: 10px;"></div>
    			 <input type="submit" value="Submit"/> <input type="reset" value="Reset">
