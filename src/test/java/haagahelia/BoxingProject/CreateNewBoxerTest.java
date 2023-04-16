@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import haagahelia.BoxingProject.domain.Boxer;
 import haagahelia.BoxingProject.domain.BoxerRepository;
 import haagahelia.BoxingProject.domain.Stance;
+import haagahelia.BoxingProject.web.BoxingProjectController;
 
 @DataJpaTest
 public class CreateNewBoxerTest {
@@ -21,4 +22,5 @@ public class CreateNewBoxerTest {
 		boxerRepository.save(testBoxer);
 		assertThat(testBoxer.getId()).isNotNull();
 	}
+	
 }
