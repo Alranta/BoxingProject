@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import haagahelia.BoxingProject.domain.Boxer;
 import haagahelia.BoxingProject.domain.BoxerRepository;
 import haagahelia.BoxingProject.domain.StanceRepository;
+import jakarta.validation.Valid;
 @CrossOrigin
 @Controller
 public class BoxingProjectController {
@@ -65,9 +67,14 @@ private StanceRepository stancerepository;
 	}
 	// POST FOR SAVE NEW BOXER
 	@PostMapping("/saveboxer")
-	public String saveBoxer(Boxer boxer, Model model) {
+	public String saveBoxer(@Valid Boxer boxer, BindingResult bindingResult,  Model model) {
+		boolean thereAreErrors = bindingResult.hasErrors();
+		if (thereAreErrors) {
 		boxerrepository.save(boxer);
-		return "redirect:/indexadmin";
+		return "redirect:/indexadmin";}
+		else {
+			return "boxerform";
+		}
 	}
 	// GET FOR DELETE BOXER
 	@GetMapping("/deleteboxer/{id}")

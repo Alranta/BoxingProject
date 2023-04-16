@@ -1,8 +1,5 @@
 package haagahelia.BoxingProject.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -10,10 +7,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 //CREATE BOXER CLASS
 @Entity // THIS CREATES A DATABASE TABLE
@@ -22,11 +19,16 @@ public class Boxer {
 	// GIVE PARAMETERS FOR A BOXER
 	@Id // THIS CREATES A PRIMARYKEY FOR THE DATABASE TABLE
 	@GeneratedValue(strategy = GenerationType.AUTO) // THIS AUTOGENERATES ID
-
+	@NotNull
 	private Long id;
+	@NotNull
+	@Size(min=1, max=30)
 	private String firstName;
+	@Size(min=1, max=50)
 	private String lastName;
+	@NotNull
 	private int birthYear;
+	@NotNull
 	private Double weight;
 	private int bouts;
 

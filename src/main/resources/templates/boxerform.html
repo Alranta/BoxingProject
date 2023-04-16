@@ -10,10 +10,12 @@
   	<h1>Anna uusi nyrkkeilijä:</h1>
     <form method="post" action="#" th:action="@{/saveboxer}" th:object = ${boxer} >
     
-    
-    		<label for="firstName">Etunimi</label>
-			<input type="text" id="firstName" th:field="*{firstName}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
+    		<div>
+    			<label for="firstName">Etunimi</label>
+				<input type="text" id="firstName" th:field="*{firstName}" />
+				<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
 			
 		  	<label for="lastName">Sukunimi</label>
 			<input type="text" id="lastName" th:field="*{lastName}" />
