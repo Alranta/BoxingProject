@@ -13,4 +13,4 @@ FROM eclipse-temurin:17-jre-focal
 # StudentListSecureDB-0.0.1-SNAPSHOT.jar  = <artifactId>-<version>.jar (pom.xml)
 COPY --from=build /home/app/target/BoxingProject-0.0.1-SNAPSHOT.jar /usr/local/lib/BoxingProject.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/usr/local/lib/hh.bookstore.sof23.jar"]
+ENTRYPOINT ["java", "-jar", "/usr/local/lib/BoxingProject.jar"]
