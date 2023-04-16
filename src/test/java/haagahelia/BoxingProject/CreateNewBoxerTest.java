@@ -8,8 +8,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import haagahelia.BoxingProject.domain.Boxer;
 import haagahelia.BoxingProject.domain.BoxerRepository;
+import haagahelia.BoxingProject.domain.Gloves;
 import haagahelia.BoxingProject.domain.Stance;
-import haagahelia.BoxingProject.web.BoxingProjectController;
 
 @DataJpaTest
 public class CreateNewBoxerTest {
@@ -18,7 +18,7 @@ public class CreateNewBoxerTest {
 	
 	@Test
 	public void createNewBoxer() throws Exception {
-		Boxer testBoxer = new Boxer("Alvari", "Rantapelkonen", 1998, 72.5, 3, new Stance("Orthodox"));
+		Boxer testBoxer = new Boxer("Alvari", "Rantapelkonen", 1998, 72.5, 3, new Stance("Orthodox"), new Gloves("Winning", 16));
 		boxerRepository.save(testBoxer);
 		assertThat(testBoxer.getId()).isNotNull();
 	}

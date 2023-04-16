@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import haagahelia.BoxingProject.domain.Boxer;
 import haagahelia.BoxingProject.domain.BoxerRepository;
+import haagahelia.BoxingProject.domain.Gloves;
+import haagahelia.BoxingProject.domain.GlovesRepository;
 import haagahelia.BoxingProject.domain.StanceRepository;
 import jakarta.validation.Valid;
 @CrossOrigin
@@ -27,9 +29,11 @@ public class BoxingProjectController {
 private BoxerRepository boxerrepository;
 @Autowired
 private StanceRepository stancerepository;
+@Autowired
+private GlovesRepository glovesrepository;
 	// INDEX HOMEPAGE WHERE THERE IS A LIST OF ALL BOXERS
 	@GetMapping({"/index", "/"})
-	public String helloWorld(Model model) {
+	public String indexPage(Model model) {
 		List<Boxer> boxerlist;
 		model.addAttribute("boxerlist", boxerrepository.findAll());
 		return "index";
@@ -44,6 +48,16 @@ private StanceRepository stancerepository;
 	@GetMapping("/boxers")
 	public @ResponseBody List<Boxer> getBoxers() {
 		return (List<Boxer>)boxerrepository.findAll();
+	}
+	
+	@GetMapping("/gloves")
+	public @ResponseBody List<Gloves> getGloves() {
+		return (List<Gloves>)glovesrepository.findAll();
+	}
+	
+	@PostMapping("/gloves")
+	public @ResponseBody Gloves addNewGloves(@RequestBody Gloves gloves) {
+		return glovesrepository.save(gloves);
 	}
 	// MAPPING FOR A SINGLE BOXER USING A ID PATH FOR REST
 	// ALSO REMEMBER API/BOXERS FOR REST API!
@@ -63,19 +77,15 @@ private StanceRepository stancerepository;
 		model.addAttribute("boxer", new Boxer());
 		// ADDED STANCE TO NEW BOXER
 		model.addAttribute("stances", stancerepository.findAll());
+		model.addAttribute("gloves", glovesrepository.findAll());
 		return "boxerform";
 	}
 	// POST FOR SAVE NEW BOXER
 	@PostMapping("/saveboxer")
-	public String saveBoxer(@Valid Boxer boxer, BindingResult bindingResult,  Model model) {
-		boolean thereAreErrors = bindingResult.hasErrors();
-		if (thereAreErrors) {
+	public String saveBoxer(@Valid Boxer boxer,  Model model) {
 		boxerrepository.save(boxer);
 		return "redirect:/indexadmin";}
-		else {
-			return "boxerform";
-		}
-	}
+	
 	// GET FOR DELETE BOXER
 	@GetMapping("/deleteboxer/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")// METHOD SECURITY, ONLY ADMIN CAN DELETE BOXER
@@ -90,6 +100,8 @@ private StanceRepository stancerepository;
 		model.addAttribute("boxer", boxerrepository.findById(id));
 		// ADDED STANCE TO EDIT BOXER
 		model.addAttribute("stances", stancerepository.findAll());
+		// ADDED GLOVES TO EDIT BOXER
+		model.addAttribute("gloves", glovesrepository.findAll());
 		return "editboxerform";
 	}
 	// MAPPING FOR LOGIN PAGE

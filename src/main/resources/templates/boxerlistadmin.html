@@ -22,6 +22,7 @@
 			<th>Nimi</th>
 			<th>Syntymävuosi</th>
 			<th>Paino</th>
+			<th>Hanskat</th>
 			<th>Kätisyys</th>
 			<th>Ottelut</th>
 			<th>Muokkaa</th>
@@ -31,6 +32,7 @@
 			<td th:text="${boxer.firstName} + ' ' + ${boxer.lastName}">Nimi</td>
 			<td th:text="${boxer.birthYear}">Syntymävuosi</td>
 			<td th:text="${boxer.weight}">Paino</td>
+			<td th:text="${boxer.gloves.name}">Hanskat</td>
 			<td th:text="${boxer.stance.stance}">Kätisyys</td>
 			<td th:text="${boxer.bouts}">Ottelut</td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a class ="btn btn-success" th:href="@{/editboxer/{id}(id=${boxer.id})}">Edit</a></td>

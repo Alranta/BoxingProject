@@ -19,7 +19,6 @@ public class Boxer {
 	// GIVE PARAMETERS FOR A BOXER
 	@Id // THIS CREATES A PRIMARYKEY FOR THE DATABASE TABLE
 	@GeneratedValue(strategy = GenerationType.AUTO) // THIS AUTOGENERATES ID
-	@NotNull
 	private Long id;
 	@NotNull
 	@Size(min=1, max=30)
@@ -36,7 +35,12 @@ public class Boxer {
 	@JsonIgnore // JSONIGNORE STOPS LOOP!
 	@JoinColumn(name = "stance_id") // JOINS TABLES TOGETHER!
 	private Stance stance;
-
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "gloves_id")
+	private Gloves gloves;
+	
 	// GENERATE CONSTRUCTORS
 	// WITHOUT PARAMETERS
 	public Boxer() {
@@ -44,7 +48,7 @@ public class Boxer {
 	}
 
 	// WITH PARAMETERS
-	public Boxer(String firstName, String lastName, int birthYear, Double weight, int bouts, Stance stance) {
+	public Boxer(String firstName, String lastName, int birthYear, Double weight, int bouts, Stance stance, Gloves gloves) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -52,6 +56,7 @@ public class Boxer {
 		this.weight = weight;
 		this.bouts = bouts;
 		this.stance = stance;
+		this.gloves = gloves;
 	}
 
 	// SETTERS
@@ -84,6 +89,10 @@ public class Boxer {
 	public void setStance(Stance stance) {
 		this.stance = stance;
 	}
+	
+	public void setGloves(Gloves gloves) {
+		this.gloves = gloves;
+	}
 	// GETTERS
 
 	public Long getId() {
@@ -112,6 +121,10 @@ public class Boxer {
 
 	public Stance getStance() {
 		return stance;
+	}
+	
+	public Gloves getGloves() {
+		return gloves;
 	}
 
 	// TOSTRING

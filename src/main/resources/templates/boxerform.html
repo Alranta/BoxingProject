@@ -29,6 +29,12 @@
 			<input type="text" th:field="*{weight}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
+			<label for="gloveslist">Hanskat</label>
+    		<select id="gloveslist" th:field="*{gloves}" class = "form-control">
+    		<option th:each="gloves: ${gloves}" th:value="${gloves.id}" th:text = "${gloves.name}"></option>
+    		</select>
+    		<div style="clear: both; display: block; height: 10px;"></div>
+			
 			<label for="stancelist">Kätisyys</label>
     		<select id="stancelist" th:field="*{stance}" class = "form-control">
     		<option th:each="stance: ${stances}" th:value="${stance.id}" th:text = "${stance.stance}"></option>

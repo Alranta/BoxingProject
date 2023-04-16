@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 		
 		.authorizeHttpRequests()
 			.requestMatchers("/css/**").permitAll()
-			.requestMatchers("/", "/index").permitAll()
+			.requestMatchers("/", "/index", "/api/gloveses").permitAll()
 			.requestMatchers(toH2Console()).permitAll()
 			.anyRequest().authenticated()
 			.and()
